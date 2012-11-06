@@ -78,7 +78,7 @@ setpci.o: setpci.c pciutils.h $(PCIINC)
 common.o: common.c pciutils.h $(PCIINC)
 
 update-pciids: update-pciids.sh
-	sed <$< >$@ "s@^DEST=.*@DEST=$(IDSDIR)/$(PCI_IDS)@;s@^PCI_COMPRESSED_IDS=.*@PCI_COMPRESSED_IDS=$(PCI_COMPRESSED_IDS)@"
+	sed <$< >$@ "s@^DEST=.*@DEST=$(IDSDIR)/pci.ids.d/pci.ids.dist@;s@^PCI_COMPRESSED_IDS=.*@PCI_COMPRESSED_IDS=@"
 	chmod +x $@
 
 # The example of use of libpci
