@@ -53,6 +53,7 @@ mkdir -p %{buildroot}%{_includedir}/pci
 cp -p lib/{pci,header,config,types}.h %{buildroot}%{_includedir}/pci/
 rm -rf %{buildroot}%{_datadir}/pci.ids*
 install -D -m 0644 lib/libpci.pc %{buildroot}%{_libdir}/pkgconfig/libpci.pc
+ln -sf libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 
 %post -n %lname -p /sbin/ldconfig
 
