@@ -64,7 +64,7 @@ dump_init(struct pci_access *a)
 
   if (!name)
     a->error("dump: File name not given.");
-  if (!(f = fopen(name, "r")))
+  if (!(f = fopen(name, "re")))
     a->error("dump: Cannot open %s: %s", name, strerror(errno));
   while (fgets(buf, sizeof(buf)-1, f))
     {

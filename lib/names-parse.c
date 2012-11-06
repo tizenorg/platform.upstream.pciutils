@@ -52,7 +52,7 @@ static pci_file pci_open(struct pci_access *a)
 typedef FILE * pci_file;
 #define pci_gets(f, l, s)	fgets(l, s, f)
 #define pci_eof(f)		feof(f)
-#define pci_open(a)		fopen(a->id_file_name, "r")
+#define pci_open(a)		fopen(a->id_file_name, "re")
 #define pci_close(f)		fclose(f)
 #define PCI_ERROR(f, err)	if (!err && ferror(f))	err = "I/O error";
 #endif

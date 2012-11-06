@@ -95,7 +95,7 @@ sysfs_get_string(struct pci_dev *d, char *object, char *buf, int mandatory)
   char namebuf[OBJNAMELEN];
 
   sysfs_obj_name(d, object, namebuf);
-  fd = open(namebuf, O_RDONLY);
+  fd = open(namebuf, O_RDONLY|O_CLOEXEC);
   if (fd < 0)
     {
       if (mandatory)
@@ -130,7 +130,7 @@ sysfs_get_resources(struct pci_dev *d)
   int i;
 
   sysfs_obj_name(d, "resource", namebuf);
-  file = fopen(namebuf, "r");
+  file = fopen(namebuf, "re");
   if (!file)
     a->error("Cannot open %s: %s", namebuf, strerror(errno));
   for (i = 0; i < 7; i++)
@@ -236,7 +236,7 @@ sysfs_fill_slots(struct pci_access *a)
       n = snprintf(namebuf, OBJNAMELEN, "%s/%s/%s", dirname, entry->d_name, "address");
       if (n < 0 || n >= OBJNAMELEN)
 	a->error("File name too long");
-      file = fopen(namebuf, "r");
+      file = fopen(namebuf, "re");
       /*
        * Old versions of Linux had a fakephp which didn't have an 'address'
        * file.  There's no useful information to be gleaned from these
@@ -312,7 +312,7 @@ sysfs_setup(struct pci_dev *d, int intent)
       if (a->fd_vpd < 0)
 	{
 	  sysfs_obj_name(d, "vpd", namebuf);
-	  a->fd_vpd = open(namebuf, O_RDONLY);
+	  a->fd_vpd = open(namebuf, O_RDONLY|O_CLOEXEC);
 	  /* No warning on error; vpd may be absent or accessible only to root */
 	}
       return a->fd_vpd;
@@ -322,7 +322,7 @@ sysfs_setup(struct pci_dev *d, int intent)
     {
       sysfs_obj_name(d, "config", namebuf);
       a->fd_rw = a->writeable || intent == SETUP_WRITE_CONFIG;
-      a->fd = open(namebuf, a->fd_rw ? O_RDWR : O_RDONLY);
+      a->fd = open(namebuf, (a->fd_rw ? O_RDWR : O_RDONLY) | O_CLOEXEC);
       if (a->fd < 0)
 	a->warning("Cannot open %s", namebuf);
       a->fd_pos = 0;
