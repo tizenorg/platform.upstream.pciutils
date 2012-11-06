@@ -9,9 +9,6 @@ Group:          Hardware/Other
 Source:         %{name}-%{version}.tar.bz2
 Source1:        COPYING
 Source2:        baselibs.conf
-Patch0:         update-pciutils-dist
-Patch1:         %{name}-%{version}_pkgconfig.patch
-Patch2:         pciutils-ocloexec.patch
 BuildRequires:  pkg-config
 BuildRequires:  zlib-devel
 Requires:       pciutils-ids
@@ -45,9 +42,6 @@ development using the PCI utilities.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=%{_libdir} SBINDIR=%{_sbindir} STRIP="" SHARED="yes"
