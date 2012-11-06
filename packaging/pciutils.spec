@@ -63,7 +63,6 @@ install -D -m 0644 lib/libpci.pc %{buildroot}%{_libdir}/pkgconfig/libpci.pc
 
 %files
 %defattr(-, root, root)
-%doc COPYING
 %{_sbindir}/*
 
 %files -n %lname
