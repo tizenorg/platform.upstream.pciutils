@@ -62,7 +62,7 @@ proc_scan(struct pci_access *a)
 
   if (snprintf(buf, sizeof(buf), "%s/devices", pci_get_param(a, "proc.path")) == sizeof(buf))
     a->error("File name too long");
-  f = fopen(buf, "r");
+  f = fopen(buf, "re");
   if (!f)
     a->error("Cannot open %s", buf);
   while (fgets(buf, sizeof(buf)-1, f))
@@ -129,7 +129,7 @@ proc_setup(struct pci_dev *d, int rw)
       if (e < 0 || e >= (int) sizeof(buf))
 	a->error("File name too long");
       a->fd_rw = a->writeable || rw;
-      a->fd = open(buf, a->fd_rw ? O_RDWR : O_RDONLY);
+      a->fd = open(buf, (a->fd_rw ? O_RDWR : O_RDONLY) | O_CLOEXEC);
       if (a->fd < 0)
 	{
 	  e = snprintf(buf, sizeof(buf), "%s/%04x:%02x/%02x.%d",
@@ -137,7 +137,7 @@ proc_setup(struct pci_dev *d, int rw)
 		       d->domain, d->bus, d->dev, d->func);
 	  if (e < 0 || e >= (int) sizeof(buf))
 	    a->error("File name too long");
-	  a->fd = open(buf, a->fd_rw ? O_RDWR : O_RDONLY);
+	  a->fd = open(buf, (a->fd_rw ? O_RDWR : O_RDONLY) | O_CLOEXEC);
 	}
       if (a->fd < 0)
 	a->warning("Cannot open %s", buf);
