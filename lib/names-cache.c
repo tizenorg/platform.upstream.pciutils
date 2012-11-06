@@ -62,7 +62,7 @@ pci_id_cache_load(struct pci_access *a, int flags)
       return 0;
     }
 
-  f = fopen(name, "rb");
+  f = fopen(name, "rbe");
   if (!f)
     {
       a->debug("Cache file does not exist\n");
@@ -135,7 +135,7 @@ pci_id_cache_flush(struct pci_access *a)
   tmpname = pci_malloc(a, strlen(name) + strlen(hostname) + 64);
   sprintf(tmpname, "%s.tmp-%s-%d", name, hostname, this_pid);
 
-  f = fopen(tmpname, "wb");
+  f = fopen(tmpname, "wbe");
   if (!f)
     {
       a->warning("Cannot write to %s: %s", name, strerror(errno));
