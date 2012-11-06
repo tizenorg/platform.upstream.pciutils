@@ -6,6 +6,5 @@ idsdir=@IDSDIR@
 Name: libpci
 Description: libpci
 Version: @VERSION@
-Libs: -L${libdir} -lpci
+Libs: -lpci @LDLIBS@
 Libs.private: @LDLIBS@
-Cflags: -I${includedir}
