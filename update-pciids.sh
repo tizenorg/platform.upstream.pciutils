@@ -4,7 +4,7 @@
 
 set -e
 SRC="http://pci-ids.ucw.cz/v2.2/pci.ids"
-DEST=pci.ids
+DEST=pci.ids.d/pci.ids.dist
 PCI_COMPRESSED_IDS=
 GREP=grep
 
@@ -65,6 +65,13 @@ if [ -f $DEST ] ; then
 fi
 mv $DEST.neww $DEST
 rm $DEST.new
+
+if [ -x /usr/bin/merge-pciids -a -x /usr/bin/perl ]; then
+	merge-pciids
+else
+	echo "WARNING: merge-pciids or perl missing"
+	cp -p $DEST /usr/share/pci.ids
+fi
 
 # Older versions did not compress the ids file, so let's make sure we
 # clean that up.
