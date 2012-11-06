@@ -7,7 +7,6 @@ Summary:        PCI utilities for Kernel version 2
 Url:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
 Group:          Hardware/Other
 Source:         %{name}-%{version}.tar.bz2
-Source1:        COPYING
 Source2:        baselibs.conf
 BuildRequires:  pkg-config
 BuildRequires:  zlib-devel
