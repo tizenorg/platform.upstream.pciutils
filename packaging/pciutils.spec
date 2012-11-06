@@ -50,17 +50,16 @@ development using the PCI utilities.
 %patch2 -p1
 
 %build
-make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=/%{_lib} SBINDIR=/sbin STRIP="" SHARED="yes"
+make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=%{_libdir} SBINDIR=%{_sbindir} STRIP="" SHARED="yes"
 
 %install
-make install PREFIX=%{buildroot}%{_prefix} SBINDIR=%{buildroot}/sbin \
+make install PREFIX=%{buildroot}%{_prefix} SBINDIR=%{buildroot}%{_sbindir} \
              ROOT=%{buildroot}/ MANDIR=%{buildroot}/%{_mandir} STRIP="" \
-	     SHARED="yes" LIBDIR=%{buildroot}/%{_lib}
+	     SHARED="yes" LIBDIR=%{buildroot}/%{_libdir}
 mkdir -p %{buildroot}%{_includedir}/pci
 cp -p lib/{pci,header,config,types}.h %{buildroot}%{_includedir}/pci/
 rm -rf %{buildroot}%{_datadir}/pci.ids*
 install -D -m 0644 lib/libpci.pc %{buildroot}%{_libdir}/pkgconfig/libpci.pc
-ln -sf /%{_lib}/libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 
 %post -n %lname -p /sbin/ldconfig
 
@@ -71,11 +70,11 @@ ln -sf /%{_lib}/libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 %files
 %defattr(-, root, root)
 %doc COPYING
-/sbin/*
+%{_sbindir}/*
 
 %files -n %lname
 %defattr(-,root,root)
-/%{_lib}/libpci.so.*
+%{_libdir}/libpci.so.*
 
 %files devel
 %defattr(-, root, root)
