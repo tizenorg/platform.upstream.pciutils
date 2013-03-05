@@ -1,5 +1,4 @@
 Name:           pciutils
-%define lname	libpci
 Version:        3.1.9
 Release:        0
 License:        GPL-2.0+
@@ -23,17 +22,17 @@ with it.
 update-pciids: This program downloads the current version of the
 pci.ids file.
 
-%package -n %lname
+%package -n libpci
 Summary:        PCI utility library
 Group:          System/Libraries
 
-%description -n %lname
+%description -n libpci
 libpci offers access to the PCI configuration space.
 
 %package devel
 Summary:        Library and Include Files of the PCI utilities
 Group:          Development/Libraries/C and C++
-Requires:       %lname = %{version}
+Requires:       libpci = %{version}
 
 %description devel
 This package contains the files that are necessary for software
@@ -48,16 +47,16 @@ make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=%{_libdir}
 %install
 make install PREFIX=%{buildroot}%{_prefix} SBINDIR=%{buildroot}%{_sbindir} \
              ROOT=%{buildroot}/ MANDIR=%{buildroot}/%{_mandir} STRIP="" \
-	     SHARED="yes" LIBDIR=%{buildroot}/%{_libdir}
+	     SHARED="yes" LIBDIR=%{buildroot}/%{_libdir} IDSDIR=%{buildroot}/%{_datadir}/hwdata
 mkdir -p %{buildroot}%{_includedir}/pci
 cp -p lib/{pci,header,config,types}.h %{buildroot}%{_includedir}/pci/
-rm -rf %{buildroot}%{_datadir}/pci.ids*
+rm -rf %{buildroot}%{_datadir}/hwdata/pci.ids*
 install -D -m 0644 lib/libpci.pc %{buildroot}%{_libdir}/pkgconfig/libpci.pc
 ln -sf libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 
-%post -n %lname -p /sbin/ldconfig
+%post -n libpci -p /sbin/ldconfig
 
-%postun -n %lname -p /sbin/ldconfig
+%postun -n libpci -p /sbin/ldconfig
 
 %docs_package
 
@@ -65,7 +64,7 @@ ln -sf libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 %defattr(-, root, root)
 %{_sbindir}/*
 
-%files -n %lname
+%files -n libpci
 %defattr(-,root,root)
 %{_libdir}/libpci.so.*
 
