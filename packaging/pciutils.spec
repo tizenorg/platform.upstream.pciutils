@@ -1,10 +1,10 @@
 Name:           pciutils
-Version:        3.1.9
+Version:        3.1.10
 Release:        0
 License:        GPL-2.0+
 Summary:        PCI utilities for Kernel version 2
 Url:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
-Group:          Hardware/Other
+Group:          Base/Tools
 Source:         %{name}-%{version}.tar.bz2
 Source2:        baselibs.conf
 BuildRequires:  pkg-config
@@ -31,7 +31,7 @@ libpci offers access to the PCI configuration space.
 
 %package devel
 Summary:        Library and Include Files of the PCI utilities
-Group:          Development/Libraries/C and C++
+Group:          Development/Libraries
 Requires:       libpci = %{version}
 
 %description devel
@@ -42,7 +42,7 @@ development using the PCI utilities.
 %setup -q
 
 %build
-make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=%{_libdir} SBINDIR=%{_sbindir} STRIP="" SHARED="yes"
+make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=%{_libdir} SBINDIR=%{_sbindir} STRIP="" SHARED="yes" IDSDIR=%{_datadir}/hwdata
 
 %install
 make install PREFIX=%{buildroot}%{_prefix} SBINDIR=%{buildroot}%{_sbindir} \
