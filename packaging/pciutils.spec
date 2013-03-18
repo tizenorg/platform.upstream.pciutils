@@ -4,7 +4,7 @@ Release:        0
 License:        GPL-2.0+
 Summary:        PCI utilities for Kernel version 2
 Url:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
-Group:          Base/Tools
+Group:          Base/Device Management
 Source:         %{name}-%{version}.tar.bz2
 Source2:        baselibs.conf
 BuildRequires:  pkg-config
@@ -24,7 +24,7 @@ pci.ids file.
 
 %package -n libpci
 Summary:        PCI utility library
-Group:          System/Libraries
+Group:          Base/Device Management
 
 %description -n libpci
 libpci offers access to the PCI configuration space.
@@ -62,6 +62,7 @@ ln -sf libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 
 %files
 %defattr(-, root, root)
+%license COPYING
 %{_sbindir}/*
 
 %files -n libpci
