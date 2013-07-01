@@ -7,6 +7,7 @@ Url:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
 Group:          Base/Device Management
 Source:         %{name}-%{version}.tar.bz2
 Source2:        baselibs.conf
+Source1001: 	pciutils.manifest
 BuildRequires:  pkg-config
 BuildRequires:  zlib-devel
 Requires:       pciutils-ids
@@ -40,6 +41,7 @@ development using the PCI utilities.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 make %{?_smp_mflags} OPT="%{optflags} -Wall" PREFIX=%{_prefix} LIBDIR=%{_libdir} SBINDIR=%{_sbindir} STRIP="" SHARED="yes" IDSDIR=%{_datadir}/hwdata
@@ -61,15 +63,18 @@ ln -sf libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 %docs_package
 
 %files
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %license COPYING
 %{_sbindir}/*
 
 %files -n libpci
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_libdir}/libpci.so.*
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-, root, root)
 %{_includedir}/pci/
 %{_libdir}/*.so
