@@ -1,0 +1,8 @@
+Change-Id: I1fadfa3e8b4564e17e124cd7a0e5f5ef55526ef4
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 09:37:02 -0700
+Reviewed-on: https://review.tizen.org/gerrit/5253
+Project: platform/upstream/pciutils
+Branch: refs/heads/tizen
