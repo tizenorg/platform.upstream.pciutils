@@ -75,8 +75,7 @@ static int
 dns_parse_packet(struct dns_state *s, byte *p, unsigned int plen)
 {
   byte *end = p + plen;
-  unsigned int i, j, len;
-  unsigned int UNUSED x;
+  unsigned int i, j, x, len;
 
 #if 0
   /* Dump the packet */

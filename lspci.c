@@ -1014,7 +1014,6 @@ main(int argc, char **argv)
       else
 	show();
     }
-  show_kernel_cleanup();
   pci_cleanup(pacc);
 
   return (seen_errors ? 2 : 0);
