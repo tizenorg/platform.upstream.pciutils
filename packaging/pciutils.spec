@@ -1,5 +1,5 @@
 Name:           pciutils
-Version:        3.1.10
+Version:        3.2.1
 Release:        0
 License:        GPL-2.0+
 Summary:        PCI utilities for Kernel version 2
