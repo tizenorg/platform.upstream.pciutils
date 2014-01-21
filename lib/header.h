@@ -144,7 +144,8 @@
 #define  PCI_BRIDGE_CTL_DISCARD_TIMER_SERR_EN 0x800	/* PCI-X? */
 
 /* Header type 2 (CardBus bridges) */
-/* 0x14-0x15 reserved */
+#define PCI_CB_CAPABILITY_LIST	0x14
+/* 0x15 reserved */
 #define PCI_CB_SEC_STATUS	0x16	/* Secondary status */
 #define PCI_CB_PRIMARY_BUS	0x18	/* PCI bus number */
 #define PCI_CB_CARD_BUS		0x19	/* CardBus bus number */
@@ -225,6 +226,7 @@
 #define PCI_EXT_CAP_ID_SRIOV	0x10	/* Single Root I/O Virtualization */
 #define PCI_EXT_CAP_ID_TPH	0x17	/* Transaction processing hints */
 #define PCI_EXT_CAP_ID_LTR	0x18	/* Latency Tolerance Reporting */
+#define PCI_EXT_CAP_ID_L1PM	0x1e	/* L1 PM Substates */
 
 /*** Definitions of capabilities ***/
 
@@ -726,8 +728,8 @@
 #define  PCI_EXP_TYPE_ROOT_PORT 0x4	/* Root Port */
 #define  PCI_EXP_TYPE_UPSTREAM	0x5	/* Upstream Port */
 #define  PCI_EXP_TYPE_DOWNSTREAM 0x6	/* Downstream Port */
-#define  PCI_EXP_TYPE_PCI_BRIDGE 0x7	/* PCI/PCI-X Bridge */
-#define  PCI_EXP_TYPE_PCIE_BRIDGE 0x8	/* PCI/PCI-X to PCIE Bridge */
+#define  PCI_EXP_TYPE_PCI_BRIDGE 0x7	/* PCIe to PCI/PCI-X Bridge */
+#define  PCI_EXP_TYPE_PCIE_BRIDGE 0x8	/* PCI/PCI-X to PCIe Bridge */
 #define  PCI_EXP_TYPE_ROOT_INT_EP 0x9	/* Root Complex Integrated Endpoint */
 #define  PCI_EXP_TYPE_ROOT_EC 0xa	/* Root Complex Event Collector */
 #define PCI_EXP_FLAGS_SLOT	0x0100	/* Slot implemented */
