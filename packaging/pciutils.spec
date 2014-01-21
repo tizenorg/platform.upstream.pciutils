@@ -1,11 +1,11 @@
 Name:           pciutils
-Version:        3.1.10
+Version:        3.2.1
 Release:        0
 License:        GPL-2.0+
 Summary:        PCI utilities for Kernel version 2
 Url:            http://atrey.karlin.mff.cuni.cz/~mj/pciutils.shtml
 Group:          Base/Device Management
-Source:         %{name}-%{version}.tar.bz2
+Source:         %{name}-%{version}.tar.gz
 Source2:        baselibs.conf
 Source1001: 	pciutils.manifest
 BuildRequires:  pkg-config
