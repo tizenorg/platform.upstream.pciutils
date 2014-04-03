@@ -30,12 +30,12 @@ Group:          Base/Device Management
 %description -n libpci
 libpci offers access to the PCI configuration space.
 
-%package devel
+%package -n libpci-devel
 Summary:        Library and Include Files of the PCI utilities
 Group:          Development/Libraries
 Requires:       libpci = %{version}
 
-%description devel
+%description -n libpci-devel
 This package contains the files that are necessary for software
 development using the PCI utilities.
 
@@ -73,7 +73,7 @@ ln -sf libpci.so.3 %{buildroot}%{_libdir}/libpci.so
 %defattr(-,root,root)
 %{_libdir}/libpci.so.*
 
-%files devel
+%files -n libpci-devel
 %manifest %{name}.manifest
 %defattr(-, root, root)
 %{_includedir}/pci/
