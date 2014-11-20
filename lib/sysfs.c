@@ -100,7 +100,7 @@ sysfs_get_value(struct pci_dev *d, char *object)
   close(fd);
   if (n < 0)
     a->error("Error reading %s: %s", namebuf, strerror(errno));
-  if (n >= (int) sizeof(buf))
+  if ((n >= (int) sizeof(buf)) || (n >= 256))
     a->error("Value in %s too long", namebuf);
   buf[n] = 0;
   return strtol(buf, NULL, 0);

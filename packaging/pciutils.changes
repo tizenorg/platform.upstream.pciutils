@@ -1,3 +1,6 @@
+* Thu Nov 20 2014 John L. Whiteman <john.l.whiteman@intel.com> submit/tizen_mobile/20141120.000000-1-g737a93c
+- Fixed TC-2101: Static analysis issue
+
 * Tue Feb 04 2014 Łukasz Stelmach <l.stelmach@samsung.com> upstream/3.2.1@d6db447
 - Update to upstream version 3.2.1
 
